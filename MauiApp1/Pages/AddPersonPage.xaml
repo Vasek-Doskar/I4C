@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Pages.AddPersonPage"
+             Title="AddPersonPage">
+    <VerticalStackLayout HorizontalOptions="Center">
+        <Label Text="Name:"/>
+        
+        <Entry MaxLength="15"
+               HorizontalTextAlignment="Center"
+               x:Name="ForName"
+               WidthRequest="250"/>
+
+        <Button Text="Save"
+                Clicked="Button_Clicked"
+                BackgroundColor="MediumOrchid"/>
+
+    </VerticalStackLayout>
+</ContentPage>
