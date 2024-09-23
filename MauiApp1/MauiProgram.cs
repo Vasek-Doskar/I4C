@@ -13,6 +13,7 @@ namespace MauiApp1
             //Registrace stránek do DI kontejneru
             builder.Services.AddScoped<MainPage>();
             builder.Services.AddScoped<AddPersonPage>();
+            builder.Services.AddScoped<AddCarPage>();
 
             // Zaregistrování Databáze
             builder.Services.AddDbContext<Context>();

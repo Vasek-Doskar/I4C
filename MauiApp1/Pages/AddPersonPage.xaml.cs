@@ -16,8 +16,6 @@ public partial class AddPersonPage : ContentPage
 		string name = ForName.Text;
 		_context.Persons.Add(new Models.Person { Name = name });
 		_context.SaveChanges();
-		ForName.Text = "";
-        await Shell.Current.GoToAsync("MainPage".ToLower());
-
+		ForName.Text = "";     
     }
 }

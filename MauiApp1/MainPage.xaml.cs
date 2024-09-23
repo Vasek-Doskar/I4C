@@ -10,8 +10,16 @@ namespace MauiApp1
         public MainPage(Context context)
         {
             _context = context;
-            InitializeComponent();
-            DbList.ItemsSource = _context.Persons.ToList();
+            InitializeComponent();            
+
+            Shell.Current.Navigated += (s, e) => 
+            {
+                DbList.ItemsSource = null;
+                DbList.ItemsSource = _context.Persons.ToList();
+
+
+            };           
+
         }
 
         private async void DbList_ItemTapped(object sender, ItemTappedEventArgs e)

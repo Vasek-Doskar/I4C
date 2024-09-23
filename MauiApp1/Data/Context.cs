@@ -8,6 +8,7 @@ namespace MauiApp1.Data
     public class Context : DbContext
     {
         public Context() {
+           // Database.EnsureDeleted();
             Database.EnsureCreated();
             Batteries_V2.Init(); // nutno pro MAUI
         }
@@ -23,7 +24,10 @@ namespace MauiApp1.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlite("Data Source = I4C.db");
+
+            string dataSource = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "I4C.db");
+
+            optionsBuilder.UseSqlite($"Data Source = {dataSource}");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
