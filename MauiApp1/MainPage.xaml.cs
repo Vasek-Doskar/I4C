@@ -1,29 +1,33 @@
 ﻿using MauiApp1.Data;
 using MauiApp1.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace MauiApp1
 {
     public partial class MainPage : ContentPage
     {
-        public readonly Context _context;
-        public MainPage(Context context)
+        public readonly IDataManager _dataManager;
+        public MainPage(IDataManager dataManager)
         {
-            _context = context;
-            InitializeComponent();            
+            _dataManager = dataManager;
+            InitializeComponent();
 
-            Shell.Current.Navigated += (s, e) => 
+            Shell.Current.Navigated += (s, e) =>
             {
-                DbList.ItemsSource = null;
-                DbList.ItemsSource = _context.Persons.ToList();
-            };         
+                Refresh();               
+            };       
+        }
 
+
+        void Refresh()
+        {
+            DbList.ItemsSource = null;
+            DbList.ItemsSource = _dataManager.GetAll();
         }
 
         private async void DbList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             int id = (e.Item as Person)!.Id;
-            Person? selected = _context.Persons.Include(p => p.Cars).FirstOrDefault(p => p.Id == id);
+            Person? selected = _dataManager.GetById(id);
 
             if (selected is not null)
             {
@@ -34,9 +38,16 @@ namespace MauiApp1
                 }
 
                 await DisplayAlert($"{selected}", output, "OK");
-                DbList.ItemsSource = null;
-                DbList.ItemsSource = _context.Persons.ToList();
+                Refresh();
             }
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            int id = (DbList.SelectedItem as Person)!.Id;
+            Person? selected = _dataManager.GetById(id);
+            _dataManager.Delete(selected);
+            Refresh();
         }
     }
 

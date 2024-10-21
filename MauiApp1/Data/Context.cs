@@ -26,12 +26,17 @@ namespace MauiApp1.Data
             base.OnConfiguring(optionsBuilder);
 
             string dataSource = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "I4C.db");
-
             optionsBuilder.UseSqlite($"Data Source = {dataSource}");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Person>()
+                .HasMany(x => x.Cars)
+                .WithOne(x => x.User)
+                .OnDelete(DeleteBehavior.Cascade);
+
 
             Person d1 = new Person { Id = 1, Name = "Adam West" };
 

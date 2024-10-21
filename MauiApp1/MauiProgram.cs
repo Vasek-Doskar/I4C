@@ -1,5 +1,4 @@
-﻿
-using MauiApp1.Data;
+﻿using MauiApp1.Data;
 using MauiApp1.Pages;
 using Microsoft.Extensions.Logging;
 
@@ -15,8 +14,13 @@ namespace MauiApp1
             builder.Services.AddScoped<AddPersonPage>();
             builder.Services.AddScoped<AddCarPage>();
 
+            // Registrace služeb do DI kontejneru
+
             // Zaregistrování Databáze
             builder.Services.AddDbContext<Context>();
+
+            // Data Managers
+            builder.Services.AddScoped<IDataManager, DataManager>();
 
             builder
                 .UseMauiApp<App>()

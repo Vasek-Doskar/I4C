@@ -15,9 +15,15 @@
             <ListView
                 WidthRequest="250"
                 HeightRequest="400"
-                BackgroundColor="HotPink"
+                BackgroundColor="LightGray"
                 ItemTapped="DbList_ItemTapped"
                 x:Name="DbList"/>
+
+            <Button WidthRequest="250"
+                    Text="Delete"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Clicked="Button_Clicked"/>
 
         </VerticalStackLayout>
     </ScrollView>

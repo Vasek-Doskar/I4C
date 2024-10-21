@@ -1,21 +1,19 @@
 using MauiApp1.Data;
-
 namespace MauiApp1.Pages;
 
 public partial class AddPersonPage : ContentPage
 {
-	private readonly Context _context;
-	public AddPersonPage(Context context)
+	private readonly IDataManager _dataManager;
+	public AddPersonPage(IDataManager dataManager)
 	{
-		_context = context;
+        _dataManager = dataManager;
 		InitializeComponent();
 	}
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
 		string name = ForName.Text;
-		_context.Persons.Add(new Models.Person { Name = name });
-		_context.SaveChanges();
+		_dataManager.Add(new Models.Person { Name = name });
 		ForName.Text = "";     
     }
 }

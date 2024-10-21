@@ -2,9 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace MauiApp1.Data
-{
-
-   
+{   
     public class DataManager : IDataManager
     {
         private readonly Context _context;
@@ -19,6 +17,7 @@ namespace MauiApp1.Data
             if(p is not null)
             {
                 _context.Add(p);
+                _context.SaveChanges();
             }
         }
 

@@ -17,7 +17,7 @@ public partial class AddCarPage : ContentPage
     private async void Button_Clicked(object sender, EventArgs e)
     {
         await SaveAsync();
-        await Shell.Current.GoToAsync("mainpage");
+        //await Shell.Current.GoToAsync("mainpage");
     }
 
     private async Task SaveAsync()
