@@ -21,6 +21,7 @@ namespace MauiApp1
 
             // Data Managers
             builder.Services.AddScoped<IDataManager, DataManager>();
+            builder.Services.AddScoped<ICarManager, CarManager>();
 
             builder
                 .UseMauiApp<App>()

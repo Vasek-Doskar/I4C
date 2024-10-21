@@ -1,17 +1,19 @@
 using MauiApp1.Data;
 using MauiApp1.Models;
-using Microsoft.Maui.Controls.Platform.Compatibility;
 
 namespace MauiApp1.Pages;
 
 public partial class AddCarPage : ContentPage
 {
-    private readonly Context _context;
-    public AddCarPage( Context context)
+
+    private readonly IDataManager _dataManager;
+    private readonly ICarManager _carManager;
+    public AddCarPage(IDataManager dataManager, ICarManager carManager)
 	{
-        _context = context;
+        _carManager = carManager;
+        _dataManager = dataManager;
 		InitializeComponent();
-        ForUser.ItemsSource = _context.Persons.ToList();
+        ForUser.ItemsSource = _dataManager.GetAll() as List<Person>;
     }
 
     private async void Button_Clicked(object sender, EventArgs e)
@@ -31,9 +33,8 @@ public partial class AddCarPage : ContentPage
                 Model = ForModel.Text,
                 UserId = p.Id,
             };
-            await _context.Cars.AddAsync(c);
-            await _context.SaveChangesAsync();
 
+            _carManager.Add(c);
             ForBrand.Text = ForModel.Text = "";
             ForUser.SelectedIndex = -1;
         }

@@ -4,7 +4,6 @@ using SQLitePCL;
 
 namespace MauiApp1.Data
 {
-
     public class Context : DbContext
     {
         public Context() {
@@ -36,7 +35,6 @@ namespace MauiApp1.Data
                 .HasMany(x => x.Cars)
                 .WithOne(x => x.User)
                 .OnDelete(DeleteBehavior.Cascade);
-
 
             Person d1 = new Person { Id = 1, Name = "Adam West" };
 
