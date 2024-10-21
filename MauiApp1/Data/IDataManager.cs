@@ -8,5 +8,7 @@ namespace MauiApp1.Data
         void Delete(Person p);
         Person GetById(int? id);
         IList<Person> GetAll();
+
+        bool Exists(Person p);
     }
 }
