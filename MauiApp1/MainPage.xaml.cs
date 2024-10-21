@@ -16,9 +16,7 @@ namespace MauiApp1
             {
                 DbList.ItemsSource = null;
                 DbList.ItemsSource = _context.Persons.ToList();
-
-
-            };           
+            };         
 
         }
 
